@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Search for recent sessions. POST to https://$xnat/data/search -->
+<!-- https://wiki.xnat.org/xnat-api/how-to-query-the-xnat-search-engine-with-rest-api -->
+<xdat:search ID="" allow-diff-columns="0" secure="false" brief-description="MR Sessions" xmlns:cnda="http://nrg.wustl.edu/cnda" xmlns:arc="http://nrg.wustl.edu/arc" xmlns:pipe="http://nrg.wustl.edu/pipe" xmlns:fs="http://nrg.wustl.edu/fs" xmlns:wrk="http://nrg.wustl.edu/workflow" xmlns:xdat="http://nrg.wustl.edu/security" xmlns:cat="http://nrg.wustl.edu/catalog" xmlns:prov="http://www.nbirn.net/prov" xmlns:xnat="http://nrg.wustl.edu/xnat" xmlns:xnat_a="http://nrg.wustl.edu/xnat_assessments" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" >
+    <xdat:root_element_name>xnat:mrSessionData</xdat:root_element_name>
+    <xdat:search_field>
+        <xdat:element_name>xnat:mrSessionData</xdat:element_name>
+        <xdat:field_ID>LABEL</xdat:field_ID>
+        <xdat:sequence>0</xdat:sequence>
+        <xdat:type>string</xdat:type>
+        <xdat:header>MR ID</xdat:header>
+    </xdat:search_field>
+    <xdat:search_where method="AND">
+        <xdat:criteria override_value_formatting="0">
+           <!-- TODO: use LAST_MODIFIED ?
+                COALESCE(xnat:mrSessionData/meta/last_modified, xnat:mrSessionData/meta/insert_date) --> 
+            <xdat:schema_field>xnat:mrSessionData/meta/insert_date</xdat:schema_field>
+            <xdat:comparison_type>>=</xdat:comparison_type>
+            <!-- 'DATE_CUTOFF_TEMPLATE_REPLACE' to be replaced with value like '2026-07-05' in downstream script -->
+            <xdat:value>DATE_CUTOFF_TEMPLATE_REPLACE</xdat:value>
+        </xdat:criteria>
+    </xdat:search_where>
+</xdat:search>
